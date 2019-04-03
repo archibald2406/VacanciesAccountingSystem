@@ -1,0 +1,84 @@
+<div class="text-center" *ngIf="!isLoaded">Loading...</div>
+<div *ngIf="isLoaded">
+  <div class="title-block">
+    <h3 class="title">
+      <a [routerLink]="['/system/vacancies']"><i class="fa fa-arrow-left"></i></a>
+      <span class="sparkline bar"></span>
+    </h3>
+  </div>
+
+  <form  #f="ngForm">
+
+    <h5 for="vacancy-status">Vacancy name: </h5>
+    <input
+      type="text"
+      id="vacancy-name"
+      required
+      class="form-control"
+      #name="ngModel"
+      name="name"
+      [(ngModel)]="vacancy.name"
+    >
+
+    <br>
+
+    <h5 for="vacancy-status">Vacancy status: </h5>
+    <select id="vacancy-status" class="form-control" #status="ngModel" name="status" [(ngModel)]="vacancy.status">
+      <option *ngFor="let stat of statusesList">{{ stat.title }}</option>
+    </select>
+
+    <br>
+
+    <h5 for="description">Description: </h5>
+    <textarea
+      id="description"
+      required
+      class="form-control txtar"
+      #description="ngModel"
+      name="description"
+      [(ngModel)]="vacancy.description"
+    ></textarea>
+
+    <br>
+
+    <div  *ngIf="formRequirements.get('requirements').controls.length">
+      <h5 for="rqrm">Requirements: </h5>
+      <table class="table" id="rqrm">
+        <tr>
+          <td class="h6 reqN">Title:</td>
+          <td class="h6 reqR">Required:</td>
+          <td class="h6" for="isPublic">Public:</td>
+        </tr>
+      </table>
+      <table class="table">
+        <div [formGroup]="formRequirements">
+          <ng-container formArrayName="requirements"
+                        *ngFor="let item of formRequirements.get('requirements').controls; let i = index;">
+            <tr [formGroupName]="i">
+              <td class="h6">{{ i + 1 + '.' }}</td>
+              <td><input type="text" class="form-control reqNm" formControlName="reqName" required></td>
+              <td class="reqB"><input type="checkbox" formControlName="isRequire"></td>
+              <td class="reqL"><input type="checkbox" formControlName="isPublic"></td>
+              <td>
+                <button class="btn btn-oval" (click)="removeRequirement(i)">
+                  -
+                </button><br>
+              </td>
+            </tr>
+          </ng-container>
+        </div>
+      </table>
+    </div>
+
+    <ng-container>
+      <button class="btn btn-oval" (click)="addRequirement()">
+        +
+      </button><br>
+    </ng-container>
+
+    <ng-container>
+      <button class="btn btn-primary" type="submit" (click)="onSave(f)" [disabled]="f.invalid || formRequirements.invalid">Save</button>
+    </ng-container>
+
+  </form>
+</div>

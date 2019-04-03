@@ -27,7 +27,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+//              "src/assets/materialize.scss",
+              "src/assets/vendor.css",
+              "src/assets/theme.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true

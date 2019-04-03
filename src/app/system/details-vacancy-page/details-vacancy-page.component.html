@@ -1,0 +1,41 @@
+<div class="text-center" *ngIf="!isLoaded">Loading...</div>
+<div *ngIf="isLoaded">
+  <div class="title-block">
+    <h3 class="title">
+      <a [routerLink]="['/system/vacancies']"><i class="fa fa-arrow-left"></i></a>
+      <span class="sparkline bar"></span>
+    </h3>
+  </div>
+
+  <form  #f="ngForm">
+    <h4>{{ vacancy.name }}: <strong>{{ vacancy.status }}</strong></h4>
+    <br>
+    <h5>Description:</h5>
+    <textarea readonly="true" class="form-control txtar" [value]="vacancy.description">
+    </textarea>
+    <br>
+    <div *ngIf="vacancy.requirements.length">
+      <h5>Requirements: </h5>
+      <table class="table">
+        <tr>
+          <td></td>
+          <td class="h6">Required:</td>
+          <td class="h6">Public:</td>
+        </tr>
+        <tr *ngFor="let item of vacancy.requirements; let i = index;">
+          <td class="h6">{{ i + 1 + '. ' + item.reqName }}</td>
+          <td><img src="https://img.icons8.com/metro/26/000000/checkmark.png" *ngIf="item.isRequire"></td>
+          <td><img src="https://img.icons8.com/metro/26/000000/checkmark.png" *ngIf="item.isPublic"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div *ngIf="candidatesList.length">
+      <h5>Candidates:</h5>
+      <ul *ngFor="let candidate of candidatesList">
+        <li>{{ candidate }}</li>
+      </ul>
+    </div>
+
+  </form>
+</div>

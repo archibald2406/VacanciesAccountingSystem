@@ -1,0 +1,41 @@
+<div class="text-center" *ngIf="!isLoaded">Loading...</div>
+
+<div *ngIf="isLoaded">
+
+  <div *ngFor="let v of vacanciesList">
+    <section class="section">
+      <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+          <div class="card" [routerLink]="['/system/vacancy-detail', v._id]">
+            <div class="card-header">
+              <div class="header-block">
+                <p class="title">
+                  <span>{{ v.name }}</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="card-block">
+              <ul>
+                <li>Status: <strong>{{ v.status }}</strong></li>
+                <li>Candidates: <strong>{{ v.candidates.length }}</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <tr>
+            <button class="btn btn-oval" [routerLink]="['/system/edit-vacancy', v._id]">
+              <img src="https://img.icons8.com/android/24/000000/pencil.png">
+            </button>
+          </tr>
+          <tr>
+            <button class="btn btn-oval" (click)="removeVacancy(v._id)">
+              <img src="https://img.icons8.com/metro/24/000000/trash.png">
+            </button>
+          </tr>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

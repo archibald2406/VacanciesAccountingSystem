@@ -1,0 +1,77 @@
+<div class="text-center" *ngIf="!isLoaded">Loading...</div>
+<div *ngIf="isLoaded">
+  <div class="title-block">
+    <h3 class="title">
+      <a [routerLink]="['/system/candidates']"><i class="fa fa-arrow-left"></i></a>
+      <span class="sparkline bar"></span>
+    </h3>
+  </div>
+
+  <form  #f="ngForm">
+
+    <h5>Name: </h5>
+    <input
+      type="text"
+      id="candidate-name"
+      required
+      class="form-control"
+      #name="ngModel"
+      name="name"
+      [(ngModel)]="candidate.name"
+    >
+    <h5>Surname: </h5>
+    <input
+      type="text"
+      id="candidate-surname"
+      required
+      class="form-control"
+      #surname="ngModel"
+      name="surname"
+      [(ngModel)]="candidate.surname"
+    >
+
+    <br>
+
+    <h5>Phone number: </h5>
+    <input
+      type="text"
+      required
+      class="form-control"
+      #phone="ngModel"
+      name="phone"
+      [(ngModel)]="candidate.phone"
+    >
+    <h5>E-mail: </h5>
+    <input
+      type="text"
+      required
+      class="form-control"
+      #email="ngModel"
+      name="email"
+      [(ngModel)]="candidate.mail"
+    >
+
+    <br>
+
+    <h5>Available vacancies: </h5>
+    <select class="form-control" #position="ngModel" name="position" [(ngModel)]="vacancyName">
+      <option *ngFor="let vac of vacanciesList">{{ vac.name }}</option>
+    </select>
+
+    <br>
+
+    <h5>Notes: </h5>
+    <textarea
+      required
+      class="form-control txtar"
+      #notes="ngModel"
+      name="notes"
+      [(ngModel)]="candidate.notes"
+    ></textarea>
+
+    <ng-container>
+      <button class="btn btn-primary" type="submit" (click)="onSave(f)" [disabled]="f.invalid">Save</button>
+    </ng-container>
+
+  </form>
+</div>

@@ -1,0 +1,21 @@
+<header class="header">
+  <div class="header-block header-block-search">
+    {{ date | date:'dd.MM.yyyy' }}
+  </div>
+  <div class="header-block header-block-nav">
+    <ul class="nav-profile">
+      <li class="profile dropdown" appDropdown>
+        <a class="nav-link dropdown-toggle" role="button">
+          <img src="https://img.icons8.com/cotton/40/000000/gender-neutral-user.png">
+          <span class="name">{{ user.name }}</span>
+        </a>
+        <div class="dropdown-menu profile-dropdown-menu">
+          <a class="dropdown-item" (click)="onLogout()">
+            <i class="fa fa-power-off icon"></i>
+            Log out
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</header>

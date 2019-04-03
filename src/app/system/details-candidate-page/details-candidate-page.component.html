@@ -1,0 +1,30 @@
+<div class="text-center" *ngIf="!isLoaded">Loading...</div>
+
+<div *ngIf="isLoaded">
+  <div class="title-block">
+    <h3 class="title">
+      <a [routerLink]="['/system/candidates']"><i class="fa fa-arrow-left"></i></a>
+      <span class="sparkline bar"></span>
+    </h3>
+  </div>
+
+  <form>
+    <h4>{{ candidate.name + ' ' + candidate.surname }}</h4>
+    <br>
+
+    <h5>Position: <strong>{{ positionName }}</strong></h5>
+    <br>
+
+    <h5>Notes:</h5>
+    <textarea readonly="true" class="form-control txtar" [value]="candidate.notes">
+    </textarea>
+    <br>
+
+    <h5>Contacts:</h5>
+    <ul>
+      <li>Phone: {{ candidate.phone }}</li>
+      <li>Mail: {{ candidate.mail }}</li>
+    </ul>
+    <br>
+  </form>
+</div>
